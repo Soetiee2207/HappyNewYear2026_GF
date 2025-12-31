@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#FF6B9D">
+
+    <title>Our Love Story 2025 💕</title>
+    <meta name="description" content="A beautiful recap of our love journey in 2025">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="epic-finale.css">
+</head>
+
+<body>
+    <!-- Music Player -->
+    <div class="music-control" id="musicControl">
+        <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13M9 9l12-2" class="music-playing" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+        </svg>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="music/daudaucunglaem.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Screen 1: Intro -->
+    <section class="screen active" id="screen1">
+        <div class="stars"></div>
+        <div class="hearts-background"></div>
+        <div class="intro-content">
+            <h1 class="intro-title">
+                <span class="sparkle">✨</span>
+                Our 2025
+                <span class="sparkle">✨</span>
+            </h1>
+            <h2 class="intro-subtitle">Love Story</h2>
+            <div class="heart-pulse">💕</div>
+            <button class="start-btn" id="startBtn">
+                <span>Tap to Start</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
+            </button>
+        </div>
+        <div class="swipe-hint">Swipe or Tap to Navigate →</div>
+    </section>
+
+    <!-- Screen 2: Stats -->
+    <section class="screen" id="screen2">
+        <div class="stars"></div>
+        <div class="screen-content">
+            <h2 class="screen-title">Our 2025 in Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card" data-delay="0">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-number" data-target="365">0</div>
+                    <div class="stat-label">Days Together</div>
+                </div>
+                <div class="stat-card" data-delay="200">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">Messages</div>
+                </div>
+                <div class="stat-card" data-delay="400">
+                    <div class="stat-icon">❤️</div>
+                    <div class="stat-number" data-target="20">0</div>
+                    <div class="stat-label">Dates</div>
+                </div>
+                <div class="stat-card" data-delay="600">
+                    <div class="stat-icon">😊</div>
+                    <div class="stat-number infinite">∞</div>
+                    <div class="stat-label">Smiles</div>
+                </div>
+            </div>
+        </div>
+        <div class="screen-nav">
+            <button class="nav-btn prev" data-screen="1">←</button>
+            <div class="nav-dots">
+                <span class="dot" data-screen="1"></span>
+                <span class="dot active" data-screen="2"></span>
+                <span class="dot" data-screen="3"></span>
+                <span class="dot" data-screen="4"></span>
+                <span class="dot" data-screen="5"></span>
+            </div>
+            <button class="nav-btn next" data-screen="3">→</button>
+        </div>
+    </section>
+
+    <!-- Screen 3: Timeline -->
+    <section class="screen" id="screen3">
+        <div class="stars"></div>
+        <div class="screen-content timeline-content">
+            <h2 class="screen-title">Best Moments 💫</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-delay="0" data-moment="xuan">
+                    <div class="timeline-image">
+                        <img src="images/xuan/1.jpg" alt="Mùa Xuân - Spring">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="timeline-info">
+                        <div class="timeline-emoji">🌸</div>
+                        <h3 class="timeline-title">Mùa Xuân - Spring</h3>
+                        <p class="timeline-desc">Những ngày đầu năm tràn đầy hạnh phúc</p>
+                        <div class="tap-hint-small">Tap để xem chi tiết →</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-delay="200" data-moment="ha">
+                    <div class="timeline-image">
+                        <img src="images/ha/1.jpg" alt="Mùa Hạ - Summer">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="timeline-info">
+                        <div class="timeline-emoji">☀️</div>
+                        <h3 class="timeline-title">Mùa Hạ - Summer</h3>
+                        <p class="timeline-desc">Nắng ấm và tình yêu rực rỡ</p>
+                        <div class="tap-hint-small">Tap để xem chi tiết →</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-delay="400" data-moment="thu">
+                    <div class="timeline-image">
+                        <img src="images/thu/1.jpg" alt="Mùa Thu - Fall">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="timeline-info">
+                        <div class="timeline-emoji">�</div>
+                        <h3 class="timeline-title">Mùa Thu - Fall</h3>
+                        <p class="timeline-desc">Lãng mạn trong từng chiếc lá rơi</p>
+                        <div class="tap-hint-small">Tap để xem chi tiết →</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-delay="600" data-moment="dong">
+                    <div class="timeline-image">
+                        <img src="images/dong/1.jpg" alt="Mùa Đông - Winter">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="timeline-info">
+                        <div class="timeline-emoji">❄️</div>
+                        <h3 class="timeline-title">Mùa Đông - Winter</h3>
+                        <p class="timeline-desc">Ấm áp bên nhau những ngày cuối năm</p>
+                        <div class="tap-hint-small">Tap để xem chi tiết →</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="screen-nav">
+            <button class="nav-btn prev" data-screen="2">←</button>
+            <div class="nav-dots">
+                <span class="dot" data-screen="1"></span>
+                <span class="dot" data-screen="2"></span>
+                <span class="dot active" data-screen="3"></span>
+                <span class="dot" data-screen="4"></span>
+                <span class="dot" data-screen="5"></span>
+            </div>
+            <button class="nav-btn next" data-screen="4">→</button>
+        </div>
+    </section>
+
+    <!-- Screen 4: Countdown -->
+    <section class="screen" id="screen4">
+        <div class="stars"></div>
+        <div class="screen-content">
+            <h2 class="screen-title">Countdown to 2026 🎊</h2>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <div class="countdown-message">Until our new chapter begins... ✨</div>
+        </div>
+        <div class="screen-nav">
+            <button class="nav-btn prev" data-screen="3">←</button>
+            <div class="nav-dots">
+                <span class="dot" data-screen="1"></span>
+                <span class="dot" data-screen="2"></span>
+                <span class="dot" data-screen="3"></span>
+                <span class="dot active" data-screen="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification Popup (appears when countdown ends) -->
+    <div class="notification-popup" id="notificationPopup">
+        <div class="notification-container">
+            <div class="notification-icon">💌</div>
+            <h2 class="notification-title">Bạn có tin nhắn mới!</h2>
+            <p class="notification-text">Tin nhắn đặc biệt dành cho em... 💕</p>
+            <button class="notification-btn" id="viewMessageBtn">
+                <span>Xem ngay</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Epic Finale Screen (New Year Celebration) -->
+    <div class="epic-finale" id="epicFinale">
+        <!-- Fireworks Canvas -->
+        <canvas id="epicFireworksCanvas"></canvas>
+
+        <!-- Flying Wishes Layer -->
+        <div id="wishesLayer" style="position: fixed; inset: 0; z-index: 100; pointer-events: none;"></div>
+
+        <!-- Starry Background -->
+        <div class="stars-animation"></div>
+
+        <!-- Auto-scrolling Credits -->
+        <div class="credits-container" id="creditsContainer">
+            <div class="credits-content">
+                <!-- Slideshow FIRST - appears first when scrolling from bottom -->
+                <div class="slideshow-container" id="slideshowContainer">
+                    <!-- Images will be inserted here dynamically -->
+                </div>
+
+                <h1 class="credits-title">🎊 CHÚC MỪNG NĂM MỚI 2026! 🎊</h1>
+
+                <div class="credits-section">
+                    <h2>2025 - Một Năm Đáng Nhớ</h2>
+                    <p>365 ngày bên nhau</p>
+                    <p>10,000+ tin nhắn trao đổi</p>
+                    <p>20 lần hẹn hò tuyệt vời</p>
+                    <p>Vô số khoảnh khắc hạnh phúc</p>
+                </div>
+
+                <div class="credits-section">
+                    <h2>🌸 Mùa Xuân</h2>
+                    <p>Khởi đầu tươi mới</p>
+                    <p>Hoa nở rộ cùng tình yêu</p>
+                </div>
+
+                <div class="credits-section">
+                    <h2>☀️ Mùa Hạ</h2>
+                    <p>Nắng ấm và yêu thương</p>
+                    <p>Những chuyến đi đáng nhớ</p>
+                </div>
+
+                <div class="credits-section">
+                    <h2>🍂 Mùa Thu</h2>
+                    <p>Lãng mạn lá vàng</p>
+                    <p>Bình yên bên nhau</p>
+                </div>
+
+                <div class="credits-section">
+                    <h2>❄️ Mùa Đông</h2>
+                    <p>Ấm áp dù trời lạnh</p>
+                    <p>Kết thúc năm cũ, bắt đầu năm mới</p>
+                </div>
+
+                <div class="credits-section highlight">
+                    <h2>💕 Lời Chúc Năm Mới Dành Cho Em</h2>
+                    <p class="love-text">Chúc em năm mới luôn tươi cười</p>
+                    <p class="love-text">Mọi điều em ước đều thành hiện thực</p>
+                    <p class="love-text">Công việc hanh thông, thăng tiến vượt bậc</p>
+                    <p class="love-text">Sức khỏe dồi dào, xinh đẹp mỗi ngày</p>
+                    <p class="love-text">May mắn, tài lộc tràn trề</p>
+                    <p class="love-text">Được yêu thương và hạnh phúc trọn vẹn</p>
+                    <p class="love-text">Anh sẽ luôn ở bên em 💕</p>
+                </div>
+
+                <div class="credits-section highlight">
+                    <h2>✨ Lời Hứa Năm 2026 ✨</h2>
+                    <p class="love-text">Anh hứa sẽ yêu em nhiều hơn</p>
+                    <p class="love-text">Quan tâm em mỗi ngày</p>
+                    <p class="love-text">Lắng nghe em, thấu hiểu em</p>
+                    <p class="love-text">Cùng em chia sẻ mọi vui buồn</p>
+                    <p class="love-text">Bảo vệ em, giữ gìn em</p>
+                    <p class="love-text">Làm em cười mỗi khi em buồn</p>
+                    <p class="love-text">Tạo thêm nhiều kỷ niệm đẹp</p>
+                    <p class="love-text">Không bao giờ làm em phải khóc</p>
+                    <p class="love-text">Luôn là chỗ dựa vững chắc cho em</p>
+                </div>
+
+                <div class="credits-section highlight">
+                    <h2>💖 Những Điều Anh Muốn Nói</h2>
+                    <p class="love-text">Cảm ơn em đã yêu anh</p>
+                    <p class="love-text">Cảm ơn em đã tin tưởng anh</p>
+                    <p class="love-text">Cảm ơn em đã chấp nhận anh</p>
+                    <p class="love-text">Cảm ơn em đã luôn ở đây</p>
+                    <p class="love-text">Em là món quà tuyệt vời nhất</p>
+                    <p class="love-text">Là ánh sáng trong cuộc đời anh</p>
+                    <p class="love-text">Là lý do anh mỉm cười mỗi ngày</p>
+                </div>
+
+                <div class="credits-section final">
+                    <h1 class="final-message">YÊU EM MÃI MÃI! 💕</h1>
+                    <h2 class="signature">- Anh của em -</h2>
+                    <div class="hearts-rain">💕 💖 💗 💓 💞 💕 💖</div>
+                </div>
+
+                <div class="credits-spacer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Moment Details -->
+    <div class="modal-overlay" id="momentModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-emoji" id="modalEmoji">❤️</div>
+                    <h2 class="modal-title" id="modalTitle">Moment Title</h2>
+                    <div class="modal-date" id="modalDate">Date</div>
+                </div>
+
+                <div class="modal-gallery">
+                    <div class="gallery-container" id="galleryContainer">
+                        <!-- Images will be inserted here -->
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="gallery-btn prev" id="galleryPrev">❮</button>
+                        <div class="gallery-dots" id="galleryDots"></div>
+                        <button class="gallery-btn next" id="galleryNext">❯</button>
+                    </div>
+                </div>
+
+                <div class="modal-details">
+                    <h3>Câu chuyện</h3>
+                    <p id="modalStory">Story content...</p>
+
+                    <div class="modal-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span id="modalLocation">Location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="firework-simulator.js"></script>
+    <!-- <script src="epic-finale.js"></script> -->
+    <script src="debug.js"></script>
+</body>
+
+</html>
