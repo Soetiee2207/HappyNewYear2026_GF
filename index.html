@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="epic-finale.css">
+    <link rel="stylesheet" href="seasonal-modal.css">
 </head>
 
 <body>
@@ -47,7 +48,18 @@
                 Our 2025
                 <span class="sparkle">✨</span>
             </h1>
-            <h2 class="intro-subtitle">Love Story</h2>
+            <h2 class="intro-subtitle">
+                <span class="letter" style="--i:0">L</span>
+                <span class="letter" style="--i:1">o</span>
+                <span class="letter" style="--i:2">v</span>
+                <span class="letter" style="--i:3">e</span>
+                <span class="letter space" style="--i:4"> </span>
+                <span class="letter" style="--i:5">S</span>
+                <span class="letter" style="--i:6">t</span>
+                <span class="letter" style="--i:7">o</span>
+                <span class="letter" style="--i:8">r</span>
+                <span class="letter" style="--i:9">y</span>
+            </h2>
             <div class="heart-pulse">💕</div>
             <button class="start-btn" id="startBtn">
                 <span>Tap to Start</span>
@@ -107,6 +119,9 @@
             <h2 class="screen-title">Best Moments 💫</h2>
             <div class="timeline">
                 <div class="timeline-item" data-delay="0" data-moment="xuan">
+                    <div class="season-particles spring-particles">
+                        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌺</span><span>🌸</span>
+                    </div>
                     <div class="timeline-image">
                         <img src="images/xuan/1.jpg" alt="Mùa Xuân - Spring">
                         <div class="image-overlay"></div>
@@ -120,6 +135,9 @@
                 </div>
 
                 <div class="timeline-item" data-delay="200" data-moment="ha">
+                    <div class="season-particles summer-particles">
+                        <span>☀️</span><span>🌞</span><span>✨</span><span>💫</span><span>⭐</span>
+                    </div>
                     <div class="timeline-image">
                         <img src="images/ha/1.jpg" alt="Mùa Hạ - Summer">
                         <div class="image-overlay"></div>
@@ -133,6 +151,9 @@
                 </div>
 
                 <div class="timeline-item" data-delay="400" data-moment="thu">
+                    <div class="season-particles autumn-particles">
+                        <span>🍂</span><span>🍁</span><span>🍂</span><span>🍁</span><span>🍂</span>
+                    </div>
                     <div class="timeline-image">
                         <img src="images/thu/1.jpg" alt="Mùa Thu - Fall">
                         <div class="image-overlay"></div>
@@ -146,6 +167,9 @@
                 </div>
 
                 <div class="timeline-item" data-delay="600" data-moment="dong">
+                    <div class="season-particles winter-particles">
+                        <span>❄️</span><span>❄️</span><span>❄️</span><span>❄️</span><span>❄️</span>
+                    </div>
                     <div class="timeline-image">
                         <img src="images/dong/1.jpg" alt="Mùa Đông - Winter">
                         <div class="image-overlay"></div>
@@ -327,6 +351,9 @@
 
     <!-- Modal for Moment Details -->
     <div class="modal-overlay" id="momentModal">
+        <!-- Seasonal Particles in Modal -->
+        <div class="modal-particles" id="modalParticles"></div>
+
         <div class="modal-container">
             <button class="modal-close" id="modalClose">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

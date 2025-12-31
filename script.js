@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (canvas) initFireworks();
     createHearts();
     createStars();
+    initSeasonalClickEffects();
 });
 
 // ===== NAVIGATION SYSTEM =====
@@ -147,7 +148,7 @@ function animateTimeline() {
 // ===== COUNTDOWN TIMER =====
 function initCountdown() {
     // PRODUCTION: Countdown to New Year 2026
-    const targetDate = new Date(10000).getTime();
+    const targetDate = new Date('2026-01-01T00:00:00+07:00').getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -503,14 +504,12 @@ function initModal() {
         }
     });
 
-    // Gallery navigation
-    document.getElementById('galleryPrev').addEventListener('click', () => {
-        navigateGallery(-1);
-    });
+    // Navigation buttons (if they exist)
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
 
-    document.getElementById('galleryNext').addEventListener('click', () => {
-        navigateGallery(1);
-    });
+    if (prevBtn) prevBtn.addEventListener('click', () => navigateGallery(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => navigateGallery(1));
 }
 
 function openModal(momentId) {
@@ -540,8 +539,8 @@ function openModal(momentId) {
     const galleryDots = document.getElementById('galleryDots');
 
     // Clear previous gallery
-    galleryContainer.innerHTML = '';
-    galleryDots.innerHTML = '';
+    if (galleryContainer) galleryContainer.innerHTML = '';
+    if (galleryDots) galleryDots.innerHTML = '';
 
     // Add images
     images.forEach((imgSrc, index) => {
@@ -554,10 +553,10 @@ function openModal(momentId) {
         img.alt = data.title;
 
         slide.appendChild(img);
-        galleryContainer.appendChild(slide);
+        if (galleryContainer) galleryContainer.appendChild(slide);
 
         // Add dot if more than 1 image
-        if (images.length > 1) {
+        if (images.length > 1 && galleryDots) {
             const dot = document.createElement('div');
             dot.className = 'gallery-dot';
             if (index === 0) dot.classList.add('active');
@@ -569,8 +568,13 @@ function openModal(momentId) {
     // Update nav buttons
     updateGalleryNav();
 
-    // Show modal
-    modal.classList.add('active');
+    // Show modal with seasonal effect
+    modal.classList.remove('season-xuan', 'season-ha', 'season-thu', 'season-dong');
+    modal.classList.add('active', `season-${momentId}`);
+
+    // Create seasonal particles
+    createModalParticles(momentId);
+
     document.body.style.overflow = 'hidden'; // Prevent background scroll
 }
 
@@ -651,6 +655,118 @@ if (viewMessageBtn) {
                 initFireworkSimulator();
             }, 100);
         }
+    });
+}
+
+// ===== SEASONAL CLICK EFFECTS =====
+function initSeasonalClickEffects() {
+    // 1. Timeline items effect
+    const timelineItems = document.querySelectorAll('.timeline-item[data-moment]');
+
+    timelineItems.forEach(item => {
+        item.addEventListener('click', function (e) {
+            const season = this.dataset.moment;
+            triggerSeasonalAnimation(this, season);
+        });
+    });
+
+    // 2. Modal container effect (only when clicking background/container, not buttons)
+    const modalContainer = document.querySelector('.modal-container');
+    if (modalContainer) {
+        modalContainer.addEventListener('mousedown', function (e) {
+            // Check if user clicked on a button, image, or interactive element
+            if (e.target.closest('button') ||
+                e.target.closest('.gallery-btn') ||
+                e.target.closest('.gallery-dot') ||
+                e.target.closest('.modal-close') ||
+                e.target.tagName === 'IMG') {
+                return; // Don't trigger effect for controls
+            }
+
+            // Get current season from modal class
+            let season = null;
+            if (document.getElementById('momentModal').classList.contains('season-xuan')) season = 'xuan';
+            else if (document.getElementById('momentModal').classList.contains('season-ha')) season = 'ha';
+            else if (document.getElementById('momentModal').classList.contains('season-thu')) season = 'thu';
+            else if (document.getElementById('momentModal').classList.contains('season-dong')) season = 'dong';
+
+            if (season) {
+                // Remove class first to reset animation
+                this.classList.remove('click-effect');
+                void this.offsetWidth; // Force reflow
+                this.classList.add('click-effect');
+
+                // Remove class after animation
+                setTimeout(() => {
+                    this.classList.remove('click-effect');
+                }, 600);
+            }
+        });
+    }
+}
+
+function triggerSeasonalAnimation(element, season) {
+    const className = `clicking-${season}`;
+
+    // Remove any existing animation class
+    element.classList.remove('clicking-xuan', 'clicking-ha', 'clicking-thu', 'clicking-dong');
+
+    // Force reflow to restart animation
+    void element.offsetWidth;
+
+    // Add the animation class
+    element.classList.add(className);
+
+    // Remove class after animation completes
+    setTimeout(() => {
+        element.classList.remove(className);
+    }, 700);
+}
+
+// ===== MODAL PARTICLES GENERATOR =====
+function createModalParticles(season) {
+    const particlesContainer = document.getElementById('modalParticles');
+    if (!particlesContainer) return;
+
+    // Clear existing particles
+    particlesContainer.innerHTML = '';
+
+    // Define particles for each season
+    const seasonalParticles = {
+        xuan: ['🌸', '🌸', '🌺', '🌸', '🌼', '🌸', '🌺', '🌸'],
+        ha: ['☀️', '🌞', '✨', '💫', '⭐', '✨', '🌟', '✨'],
+        thu: ['🍂', '🍁', '🍂', '🍁', '🍂', '🍁', '🍂', '🍁'],
+        dong: ['❄️', '❄️', '❄️', '❄️', '❄️', '❄️', '❄️', '❄️']
+    };
+
+    const particles = seasonalParticles[season] || [];
+
+    // Create and position particles
+    particles.forEach((particle, index) => {
+        const span = document.createElement('span');
+        span.textContent = particle;
+
+        // Random horizontal position
+        span.style.left = Math.random() * 100 + '%';
+
+        // For spring: start from bottom
+        if (season === 'xuan') {
+            span.style.bottom = Math.random() * 20 + '%';
+        }
+        // For summer: random position (sparkles appear everywhere)
+        else if (season === 'ha') {
+            span.style.top = Math.random() * 100 + '%';
+            span.style.left = Math.random() * 100 + '%';
+        }
+        // For autumn & winter: start from top
+        else {
+            span.style.top = (Math.random() * 20 - 10) + '%';
+        }
+
+        // Stagger animations
+        span.style.animationDelay = (index * 0.8) + 's';
+
+        particlesContainer.appendChild(span);
     });
 }
 
