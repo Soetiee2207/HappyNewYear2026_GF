@@ -104,6 +104,14 @@ function goToScreen(screenNumber) {
             animateStats();
         } else if (screenNumber === 3) {
             animateTimeline();
+        } else if (screenNumber === 4) {
+            // Bắt đầu đếm 20 giây khi vào trang countdown
+            startScreen4Timer();
+        }
+
+        // Dừng timer nếu rời khỏi screen4
+        if (screenNumber !== 4) {
+            stopScreen4Timer();
         }
     }
 }
@@ -146,45 +154,77 @@ function animateTimeline() {
 }
 
 // ===== COUNTDOWN TIMER =====
+let screen4Timer = null;
+let screen4StartTime = null;
+let notificationShown = false;
+const NOTIFICATION_DELAY = 20; // Hiện thông báo sau 20 giây ở trang cuối
+
 function initCountdown() {
-    // PRODUCTION: Countdown to New Year 2026
-    const targetDate = new Date('2026-01-01T00:00:00+07:00').getTime();
+    // Hiển thị countdown giả (00:00:00:00) vì đã qua giao thừa
+    document.getElementById('days').textContent = '00';
+    document.getElementById('hours').textContent = '00';
+    document.getElementById('minutes').textContent = '00';
+    document.getElementById('seconds').textContent = '00';
+}
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+// Bắt đầu đếm thời gian khi vào screen4
+function startScreen4Timer() {
+    if (notificationShown) return; // Đã hiện thông báo rồi thì không đếm nữa
+    if (screen4Timer) return; // Timer đang chạy rồi thì không khởi động lại
 
-        if (distance < 0) {
-            // Countdown finished! Show notification popup
-            clearInterval(countdownInterval);
+    screen4StartTime = Date.now();
+    console.log('⏱️ Bắt đầu đếm 20 giây...');
 
-            document.getElementById('days').textContent = '00';
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
+    // Hiển thị ngay số 20 ban đầu
+    document.getElementById('seconds').textContent = String(NOTIFICATION_DELAY).padStart(2, '0');
 
-            // Show notification popup instead of redirecting
-            const popup = document.getElementById('notificationPopup');
-            if (popup) {
-                popup.classList.add('active');
-                console.log('🎉 Showing notification popup...');
-            }
+    // Cập nhật hiển thị countdown mỗi giây
+    screen4Timer = setInterval(() => {
+        if (currentScreen !== 4) {
+            // Nếu người dùng rời khỏi screen4, dừng timer
+            clearInterval(screen4Timer);
+            screen4Timer = null;
+            console.log('⏸️ Dừng timer - rời khỏi trang countdown');
             return;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const elapsed = Math.floor((Date.now() - screen4StartTime) / 1000);
+        const remaining = Math.max(0, NOTIFICATION_DELAY - elapsed);
 
-        document.getElementById('days').textContent = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        // Cập nhật hiển thị (chỉ hiện giây đếm ngược)
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = String(remaining).padStart(2, '0');
+
+        // Sau 20 giây, hiện thông báo
+        if (remaining <= 0) {
+            clearInterval(screen4Timer);
+            screen4Timer = null;
+            showNotificationPopup();
+        }
+    }, 1000);
+}
+
+// Dừng timer khi rời khỏi screen4
+function stopScreen4Timer() {
+    if (screen4Timer) {
+        clearInterval(screen4Timer);
+        screen4Timer = null;
+        console.log('⏸️ Dừng timer');
     }
+}
 
-    updateCountdown();
-    countdownInterval = setInterval(updateCountdown, 1000);
+// Hiện thông báo popup
+function showNotificationPopup() {
+    if (notificationShown) return;
+    notificationShown = true;
+
+    const popup = document.getElementById('notificationPopup');
+    if (popup) {
+        popup.classList.add('active');
+        console.log('🎉 Hiện thông báo sau 20 giây!');
+    }
 }
 
 // ===== MUSIC PLAYER =====
