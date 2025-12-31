@@ -147,7 +147,7 @@ function animateTimeline() {
 // ===== COUNTDOWN TIMER =====
 function initCountdown() {
     // PRODUCTION: Countdown to New Year 2026
-    const targetDate = new Date('2026-01-01T00:00:00+07:00').getTime();
+    const targetDate = new Date(10000).getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
